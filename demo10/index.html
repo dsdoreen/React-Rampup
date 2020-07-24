@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../build/react.development.js"></script>
+    <script src="../build/react-dom.development.js"></script>
+    <script src="../build/babel.min.js"></script>
+    <title>生命周期</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class Hello extends React.Component{
+            constructor(props){
+                super(props)
+                this.state={
+                    title:'welcome to react',
+                    opacity: 1.0
+                }
+            }
+            componentDidMount(){
+                this.timer=setInterval(function(){
+                    var opacity=this.state.opacity;
+                    opacity-=.05;
+                    if(opacity<0.1){
+                        opacity=1.0
+                    }
+                    this.setState({
+                        opacity:opacity
+                    })
+                }.bind(this),100)
+            }
+            render(){
+                return (
+                    <div style={{opacity:this.state.opacity}}>
+                        {this.state.title},{this.props.name}
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            (<div>
+            <Hello name="Doreen"/>
+            </div>),
+            document.querySelector("#root")
+        )
+    </script>
+</body>
+</html>

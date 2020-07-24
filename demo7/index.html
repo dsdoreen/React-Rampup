@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../build/react.development.js"></script>
+    <script src="../build/react-dom.development.js"></script>
+    <script src="../build/babel.min.js" ></script>
+
+    <title>获取真实的DOM节点</title>
+</head>
+<body>
+    <div id="root" ></div>
+    <script type="text/babel">
+    var value="111";
+        class MyComponent extends React.Component{
+            constructor(props){
+                super(props)
+                this.MyInput=React.createRef();
+                this.MyInput1=React.createRef();
+                this.handleClick=this.handleClick.bind(this)
+            }
+            handleClick(){
+               this.MyInput.current.focus();
+            }
+            render(){
+                return (
+                    <div>
+                    <input type="text" ref={this.MyInput} />
+                    <p>111</p>
+                    <input type="text" ref={this.MyInput1} />
+                    <input type="button" value="Focus the value text" onClick={this.handleClick} />
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(
+            (<div>
+                <MyComponent />
+            </div>),
+            document.querySelector("#root")
+        )
+    </script>
+</body>
+</html>

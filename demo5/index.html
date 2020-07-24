@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../build/react.development.js"></script>
+    <script src="../build/react-dom.development.js"></script>
+    <script src="../build/babel.min.js"></script>
+    <title>this.props.children</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class NotesList extends React.Component {
+            render() {
+                return (<div>
+                    <ol>
+                        {
+                        React.Children.map((this.props.children),function(item){
+                            return <li>{item}</li>
+                        })
+                        }
+                    </ol>
+                </div>)
+            }
+        }
+        ReactDOM.render(
+            (<div>
+                <NotesList>
+                    <h1>h1标题</h1>
+                    <h2>h2标题</h2>
+                </NotesList>
+            </div>),
+            document.querySelector("#root")
+        )
+    </script>
+</body>
+
+</html>
